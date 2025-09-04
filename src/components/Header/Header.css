@@ -1,17 +1,16 @@
 .header {
-    display: flex;
+  display: flex;
 }
 
 .header__logo {
-    margin-right: 24px;
-
+  margin-right: 24px;
 }
 
 .header__add-clothes-btn {
-    margin-left: auto;
-    margin-right: 20px
+  margin-left: auto;
+  margin-right: 20px;
 }
 
 .header__username {
-    margin-right: 12px;
+  margin-right: 12px;
 }
