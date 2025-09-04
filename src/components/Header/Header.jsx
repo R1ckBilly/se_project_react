@@ -4,10 +4,10 @@ import avatar from "../../images/avatar_logo.svg";
 
 function Header() {
   const now = new Date();
-    const dateStr = now.toLocaleDateString("default", {
-      month: "long",
-      day: "numeric",
-    });
+  const dateStr = now.toLocaleDateString("default", {
+    month: "long",
+    day: "numeric",
+  });
 
   return (
     <header className="header">
