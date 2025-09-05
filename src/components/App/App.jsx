@@ -3,17 +3,118 @@ import { useState } from "react";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
+import ItemModal from "../ItemModal/ItemModal";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 import { defaultClothingItems } from "../../utils/defaultClothingItems";
 import "./App.css";
 
 function App() {
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [activeModal, setActiveModal] = useState("");
+  const [selectedCard, setSelectedCard] = useState({});
+
+  function handleOpenItemModal(card) {
+    setActiveModal("item-modal");
+    setSelectedCard(card);
+  }
+
+  function handleCloseItemModal(card) {
+    setActiveModal("");
+    setSelectedCard({});
+  }
+
+  function handleOpenAddGarmentModal() {
+    setActiveModal("add-garment-modal");
+  }
+
   return (
     <div className="app">
-      <Header />
-      <Main clothingItems={clothingItems} />
+      <Header handleOpenAddGarmentModal={handleOpenAddGarmentModal} />
+      <Main
+        clothingItems={clothingItems}
+        handleOpenItemModal={handleOpenItemModal}
+      />
       <Footer />
+      <ItemModal
+        card={selectedCard}
+        isOpen={activeModal === "item-modal"}
+        isClosed={handleCloseItemModal}
+      />
+      <ModalWithForm
+        isOpen={activeModal === "add-garment-modal"}
+        isClosed={handleCloseItemModal}
+        title="New garment"
+        buttonText="Add garment"
+        name="add-garment-form"
+      >
+        <fieldset className="modal__fieldset">
+          <label htmlFor="add-garment-name" className="modal__label">
+            Name
+          </label>
+          <input
+            id="add-garment-name"
+            type="text"
+            name="name"
+            placeholder="Name"
+            className="modal__input"
+          />
+
+          <label htmlFor="add-garment-image" className="modal__label">
+            Link
+          </label>
+          <input
+            id="add-garment-image"
+            type="url"
+            name="image"
+            placeholder="Image URL"
+            className="modal__input"
+          />
+        </fieldset>
+
+        <fieldset className="modal__fieldset">
+          <legend>Select the weather type:</legend>
+
+          <div>
+            <input
+              className="modal__radio-btn"
+              type="radio"
+              id="hot"
+              name="weather"
+              value="hot"
+            />
+            <label className="modal__label" htmlFor="hot">
+              Hot
+            </label>
+          </div>
+
+          <div>
+            <input
+              className="modal__radio-btn"
+              type="radio"
+              id="warm"
+              name="weather"
+              value="warm"
+            />
+            <label className="modal__label" htmlFor="warm">
+              Warm
+            </label>
+          </div>
+
+          <div>
+            <input
+              className="modal__radio-btn"
+              type="radio"
+              id="cold"
+              name="weather"
+              value="cold"
+            />
+            <label className="modal__label" htmlFor="cold">
+              Cold
+            </label>
+          </div>
+        </fieldset>
+      </ModalWithForm>
     </div>
   );
 }
