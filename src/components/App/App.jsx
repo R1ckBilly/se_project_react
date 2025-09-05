@@ -19,3 +19,6 @@ function App() {
 }
 
 export default App;
+
+// TODO - apply all styles from figma to all components
+// TODO - implement the footer
