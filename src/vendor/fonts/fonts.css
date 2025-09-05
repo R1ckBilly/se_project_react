@@ -1,12 +1,12 @@
 @font-face {
-  font-family: "Cabinet Grotesk Bold";
-  font-style: normal;
+  font-family: "Cabinet Grotesk";
+  font-style: bold;
   font-weight: 700;
   src: url("CabinetGrotesk-Bold.woff") format("woff");
 }
 
 @font-face {
-  font-family: "Cabinet Grotesk Medium";
+  font-family: "Cabinet Grotesk";
   font-style: medium;
   font-weight: 500;
   src: local("Cabinet Grotesk Medium"),

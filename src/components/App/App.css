@@ -1,5 +1,9 @@
 .app {
-    margin: 0 auto;
-    max-width: 1360px;
-    padding: 32px 40px 24px;
+  font-family: Cabinet Grotesk, sans-serif;
+  font-weight: 700;
+  font-style: Bold;
+  line-height: 40px;
+  margin: 0 auto;
+  max-width: 1360px;
+  padding: 32px 40px 24px;
 }
