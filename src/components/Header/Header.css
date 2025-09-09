@@ -1,10 +1,16 @@
 .header {
   display: flex;
+  justify-content: space-between;
   font-family: Cabinet Grotesk, sans-serif;
   font-weight: 700;
   font-size: 20px;
   line-height: 1;
   margin: 32px 0px 28px;
+}
+
+.header__side {
+  display: flex;
+  align-items: center;
 }
 
 .header__logo {
@@ -17,8 +23,7 @@
 }
 
 .header__add-clothes-btn {
-  margin-left: auto;
-  margin-right: 20px;
+  margin: 0 20px;
   background-color: transparent;
   border: none;
 }
