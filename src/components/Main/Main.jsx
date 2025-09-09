@@ -2,11 +2,13 @@ import ItemCard from "../ItemCard/ItemCard";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import "./Main.css";
 
-function Main({ clothingItems, handleOpenItemModal }) {
+function Main({ clothingItems, handleOpenItemModal, weatherData }) {
   return (
     <main className="main">
-      <WeatherCard />
-      <p className="main__text">Today is 75° F / You may want to wear:</p>
+      <WeatherCard weatherData={weatherData} />
+      <p className="main__text">
+        Today is {weatherData.temp}&deg; F / You may want to wear:
+      </p>
       <ul className="main__card-list">
         {clothingItems.map((item) => {
           return (

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useEffect } from "react";
 
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -8,11 +9,13 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 import { defaultClothingItems } from "../../utils/defaultClothingItems";
 import "./App.css";
+import { getWeatherData } from "../../utils/weatherApi";
 
 function App() {
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
+  const [weatherData, setWeatherData] = useState({ name: "", temp: "0" });
 
   function handleOpenItemModal(card) {
     setActiveModal("item-modal");
@@ -28,10 +31,22 @@ function App() {
     setActiveModal("add-garment-modal");
   }
 
+  useEffect(() => {
+    getWeatherData()
+      .then((data) => {
+        setWeatherData(data);
+      })
+      .catch(console.error);
+  }, []);
+
   return (
     <div className="app">
-      <Header handleOpenAddGarmentModal={handleOpenAddGarmentModal} />
+      <Header
+        weatherData={weatherData}
+        handleOpenAddGarmentModal={handleOpenAddGarmentModal}
+      />
       <Main
+        weatherData={weatherData}
         clothingItems={clothingItems}
         handleOpenItemModal={handleOpenItemModal}
       />
