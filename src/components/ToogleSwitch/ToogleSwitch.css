@@ -28,11 +28,27 @@
   z-index: -1;
 }
 
+.toogle__switch-checkbox:checked + .toogle__switch-circle {
+  right: -2px;
+  left: unset;
+}
+
 .toogle__switch-value {
-  /* color: #7e7e7e; */
-  color: red;
+  color: #7e7e7e;
   font-family: Cabinet Grotesk, sans-serif;
   font-size: 14px;
   font-weight: 700;
   line-height: 1;
+}
+
+.toogle__switch-value_left {
+  color: #ffffff;
+}
+
+.toogle__switch-checkbox:checked ~ .toogle__switch-value_left {
+  color: #7e7e7e;
+}
+
+.toogle__switch-checkbox:checked ~ .toogle__switch-value_right {
+  color: #ffffff;
 }

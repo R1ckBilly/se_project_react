@@ -15,10 +15,11 @@ export function getWeatherData() {
 }
 
 function parseWeatherData(data) {
-  const parseData = {};
+  const parseData = { temp: {} };
 
   parseData.city = data.name;
-  parseData.temp = Math.round(data.main.temp);
+  parseData.temp.F = Math.round(data.main.temp);
+  parseData.temp.C = Math.round((parseData.temp.F - 32) * 5 / 9); // TODO - convert F to C
 
   return parseData;
 }
