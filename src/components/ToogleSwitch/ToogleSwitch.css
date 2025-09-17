@@ -26,11 +26,11 @@
   border-radius: 50%;
   background-color: #000;
   z-index: -1;
+  transition: left 0.3s linear;
 }
 
 .toogle__switch-checkbox:checked + .toogle__switch-circle {
-  right: -2px;
-  left: unset;
+  left: 26px;
 }
 
 .toogle__switch-value {

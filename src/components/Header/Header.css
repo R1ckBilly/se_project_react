@@ -28,6 +28,12 @@
   border: none;
 }
 
+.header__link {
+  display: flex;
+  text-decoration: none;
+  color: #000;
+}
+
 .header__username {
   margin-right: 12px;
 }

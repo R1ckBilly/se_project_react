@@ -1,5 +1,5 @@
 .modal {
-  font-family: Canbiet Grotesk, sans-serif;
+  font-family: Cabinet Grotesk, sans-serif;
   font-weight: 700;
   align-items: center;
   justify-content: center;
@@ -43,12 +43,13 @@
 }
 
 .modal__close-icon {
-  width: 24px;  
-  height: 24px;  
+  width: 24px;
+  height: 24px;
 }
 
 .modal__footer {
   background-color: #ffffff;
+  padding: 20px 32px 32px;
 }
 
 .modal__text {
@@ -68,7 +69,6 @@
   color: #000000;
 }
 
-
 .modal__title {
   margin: 0 0 28px;
   font-family: Cabinet Grotesk, sans-serif;
@@ -85,11 +85,11 @@
   line-height: 20px;
   border: 1px;
   width: 100%;
-  border-bottom: 1px solid #000000; 
-  background: transparent;    
-  outline: none;             
+  border-bottom: 1px solid #000000;
+  background: transparent;
+  outline: none;
   padding: 8px 0 4px;
-  margin-bottom: 24px;        
+  margin-bottom: 24px;
 }
 
 .modal__fieldset {
@@ -131,9 +131,5 @@
 .modal__submit-btn:hover {
   background-color: #000000;
   opacity: 60%;
-  transform: scale(1.05);  
+  transform: scale(1.05);
 }
-
-
-
-
