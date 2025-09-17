@@ -42,6 +42,12 @@ function App() {
     }
   }
 
+  function handleAddItemSubmit(inputValues) {
+     console.log(inputValues);
+     setClothingItems([inputValues, ...clothingItems]);
+     handleCloseItemModal();
+  }
+
   useEffect(() => {
     getWeatherData()
       .then((data) => {
@@ -95,6 +101,7 @@ function App() {
         <AddItemModal
           isOpen={activeModal === "add-garment-modal"}
           isClosed={handleCloseItemModal}
+          handleAddItemSubmit={handleAddItemSubmit}
         />
       </div>
     </CurrentTemperatureUnitContext.Provider>

@@ -12,7 +12,7 @@ function ModalWithForm({
 }) {
   function handleOverlayClick(e) {
     if (e.target === e.currentTarget) {
-      isClosed(); // closes the modal when clicking the overlay
+      isClosed(); 
     }
   }
 
@@ -36,10 +36,10 @@ function ModalWithForm({
         </button>
         <form onSubmit={handleSubmit} name={name} className="modal__form">
           {children}
+          <button type="submit" className="modal__submit-btn">
+            {buttonText}
+          </button>
         </form>
-        <button type="submit" className="modal__submit-btn">
-          {buttonText}
-        </button>
       </div>
     </div>
   );

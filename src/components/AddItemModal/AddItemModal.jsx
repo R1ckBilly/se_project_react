@@ -1,12 +1,19 @@
 import { useForm } from "../../hooks/useForms";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function AddItemModal({ isOpen, isClosed }) {
+function AddItemModal({ isOpen, isClosed, handleAddItemSubmit }) {
   const { values, handleChange } = useForm({
     name: "",
     image: "",
     weather: "hot",
   });
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    handleAddItemSubmit( values );
+  };
+
+  // TODO - implement reset
 
   return (
     <ModalWithForm
@@ -15,6 +22,7 @@ function AddItemModal({ isOpen, isClosed }) {
       title="New garment"
       buttonText="Add garment"
       name="add-garment-form"
+      handleSubmit={handleSubmit}
     >
       <fieldset className="modal__fieldset">
         <label htmlFor="add-garment-name" className="modal__label">
