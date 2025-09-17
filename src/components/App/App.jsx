@@ -43,9 +43,17 @@ function App() {
   }
 
   function handleAddItemSubmit(inputValues) {
-     console.log(inputValues);
-     setClothingItems([inputValues, ...clothingItems]);
-     handleCloseItemModal();
+    console.log(inputValues);
+    setClothingItems([inputValues, ...clothingItems]);
+    handleCloseItemModal();
+  }
+
+  function handleDeleteItem(cardToDelete) {
+    const updatedItems = clothingItems.filter(
+      (item) => item._id !== cardToDelete._id
+    );
+    setClothingItems(updatedItems);
+    handleCloseItemModal();
   }
 
   useEffect(() => {
@@ -97,6 +105,7 @@ function App() {
           card={selectedCard}
           isOpen={activeModal === "item-modal"}
           isClosed={handleCloseItemModal}
+          isDeleted={handleDeleteItem}
         />
         <AddItemModal
           isOpen={activeModal === "add-garment-modal"}

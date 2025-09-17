@@ -48,15 +48,38 @@
 }
 
 .modal__footer {
+  position: relative;
   background-color: #ffffff;
   padding: 20px 32px 32px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.modal__delete-btn {
+  font-family: Cabinet Grotesk, sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  color: #ff4d00;
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  right: 20px;
+  bottom: 80px;
+  margin: 25px 34px 0 0;
+  padding: 0;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.modal__delete-btn:hover {
+  cursor: pointer;
+  opacity: 60%;
+  transform: scale(1.05);
 }
 
 .modal__text {
   margin: 0;
 }
-
-/* form styles */
 
 .modal__container_type_form {
   padding: 28px 28px 36px;
