@@ -12,6 +12,7 @@ import { defaultClothingItems } from "../../utils/defaultClothingItems";
 import "./App.css";
 import { getWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
+import { addItem, deleteItem, getItems } from "../../utils/api";
 
 function App() {
   const [clothingItems, setClothingItems] = useState([]);
@@ -43,17 +44,23 @@ function App() {
   }
 
   function handleAddItemSubmit(inputValues) {
-    console.log(inputValues);
-    setClothingItems([inputValues, ...clothingItems]);
-    handleCloseItemModal();
+    addItem(inputValues)
+      .then((data) => {
+        setClothingItems([data, ...clothingItems]);
+        handleCloseItemModal();
+      })
+      .catch(console.error);
   }
 
   function handleDeleteItem(cardToDelete) {
-    const updatedItems = clothingItems.filter(
-      (item) => item._id !== cardToDelete._id
-    );
-    setClothingItems(updatedItems);
-    handleCloseItemModal();
+    deleteItem(cardToDelete._id).then(() => {
+      const updatedItems = clothingItems.filter(
+        (item) => item._id !== cardToDelete._id
+      );
+      setClothingItems(updatedItems);
+      handleCloseItemModal();
+    })
+    .catch(console.error);
   }
 
   useEffect(() => {
@@ -65,7 +72,12 @@ function App() {
   }, []);
 
   useEffect(() => {
-    setClothingItems(defaultClothingItems);
+    getItems()
+      .then((items) => {
+        // TODO - make card appear on top
+        setClothingItems(items.reverse());
+      })
+      .catch(console.error);
   }, []);
 
   return (

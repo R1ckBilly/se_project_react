@@ -5,7 +5,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 function AddItemModal({ isOpen, isClosed, handleAddItemSubmit }) {
   const { values, handleChange, setValues } = useForm({
     name: "",
-    image: "",
+    imageUrl: "",
     weather: "hot",
   });
 
@@ -49,10 +49,10 @@ function AddItemModal({ isOpen, isClosed, handleAddItemSubmit }) {
         <input
           id="add-garment-image"
           type="url"
-          name="image"
+          name="imageUrl"
           placeholder="Image URL"
           className="modal__input"
-          value={values.image}
+          value={values.imageUrl}
           onChange={handleChange}
         />
       </fieldset>
