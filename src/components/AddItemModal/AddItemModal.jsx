@@ -16,7 +16,7 @@ function AddItemModal({ isOpen, isClosed, handleAddItemSubmit }) {
 
   useEffect(() => {
     if (!isOpen) {
-      setValues({ name: "", image: "", weather: "hot" });
+      setValues({ name: "", imageUrl: "", weather: "hot" });
     }
   }, [isOpen, setValues]);
 
