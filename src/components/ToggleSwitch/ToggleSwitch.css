@@ -1,4 +1,4 @@
-.toogle__switch {
+.toggle__switch {
   width: 56px;
   height: 28px;
   border: 2px solid #7e7e7e;
@@ -12,12 +12,12 @@
   z-index: 0;
 }
 
-.toogle__switch-checkbox {
+.toggle__switch-checkbox {
   visibility: hidden;
   position: absolute;
 }
 
-.toogle__switch-circle {
+.toggle__switch-circle {
   position: absolute;
   top: -2px;
   left: -2px;
@@ -29,11 +29,11 @@
   transition: left 0.3s linear;
 }
 
-.toogle__switch-checkbox:checked + .toogle__switch-circle {
+.toggle__switch-checkbox:checked + .toggle__switch-circle {
   left: 26px;
 }
 
-.toogle__switch-value {
+.toggle__switch-value {
   color: #7e7e7e;
   font-family: Cabinet Grotesk, sans-serif;
   font-size: 14px;
@@ -41,14 +41,14 @@
   line-height: 1;
 }
 
-.toogle__switch-value_left {
+.toggle__switch-value_left {
   color: #ffffff;
 }
 
-.toogle__switch-checkbox:checked ~ .toogle__switch-value_left {
+.toggle__switch-checkbox:checked ~ .toggle__switch-value_left {
   color: #7e7e7e;
 }
 
-.toogle__switch-checkbox:checked ~ .toogle__switch-value_right {
+.toggle__switch-checkbox:checked ~ .toggle__switch-value_right {
   color: #ffffff;
 }

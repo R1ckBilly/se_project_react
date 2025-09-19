@@ -4,7 +4,7 @@ import "./Header.css";
 import logo from "../../images/wtwr_logo.svg";
 import avatar from "../../images/avatar_logo.svg";
 
-import ToogleSwitch from "../ToogleSwitch/ToogleSwitch";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 function Header({ handleOpenAddGarmentModal, weatherData }) {
   const now = new Date();
@@ -27,7 +27,7 @@ function Header({ handleOpenAddGarmentModal, weatherData }) {
         </Link>
       </div>
       <div className="header__side">
-        <ToogleSwitch />
+        <ToggleSwitch />
         <button
           onClick={handleOpenAddGarmentModal}
           className="header__add-clothes-btn"
