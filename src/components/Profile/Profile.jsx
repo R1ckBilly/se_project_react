@@ -7,10 +7,16 @@ function Profile({
   clothingItems,
   handleOpenAddGarmentModal,
   handleOpenItemModal,
+  handleSignOutSubmit,
 }) {
   return (
     <main className="profile">
-      <SideBar />
+      <div className="profile__sidebar">
+        <SideBar />
+        <button className="profile__signout-btn" onClick={handleSignOutSubmit}>
+          Sign Out
+        </button>
+      </div>
       <ClothesSection
         clothingItems={clothingItems}
         handleOpenAddGarmentModal={handleOpenAddGarmentModal}

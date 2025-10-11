@@ -97,6 +97,14 @@ function App() {
       .catch(console.error);
   }
 
+  function handleSignOutSubmit() {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    setCurrentUser(null);
+    setActiveModal("");
+    setClothingItems([]);
+  }
+
   function getUserData() {
     const token = localStorage.getItem("jwt");
     if (token) {
@@ -119,12 +127,16 @@ function App() {
   }, []);
 
   useEffect(() => {
+  if (isLoggedIn) {
     getItems()
       .then((items) => {
         setClothingItems(items.reverse());
       })
       .catch(console.error);
-  }, []);
+  } else {
+    setClothingItems([]); 
+  }
+}, [isLoggedIn]);
 
   useEffect(() => {
     getUserData();
@@ -164,6 +176,7 @@ function App() {
                       clothingItems={clothingItems}
                       handleOpenAddGarmentModal={handleOpenAddGarmentModal}
                       handleOpenItemModal={handleOpenItemModal}
+                      handleSignOutSubmit={handleSignOutSubmit}
                     />
                   </ProtectedRoute>
                 }
