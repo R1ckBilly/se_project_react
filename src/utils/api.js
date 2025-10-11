@@ -6,7 +6,8 @@ function getItems() {
   });
 }
 
-function addItem({ name, imageUrl, weather }, token) {
+function addItem({ name, imageUrl, weather }) {
+  const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
@@ -19,12 +20,13 @@ function addItem({ name, imageUrl, weather }, token) {
   });
 }
 
-function deleteItem(id, token) {
+function deleteItem(id) {
+  const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
     headers: {
       authorization: `Bearer ${token}`,
-    }
+    },
   }).then((res) => {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
   });
@@ -61,7 +63,9 @@ function getCurrentUser(token) {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  }).then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`));
+  }).then((res) =>
+    res.ok ? res.json() : Promise.reject(`Error: ${res.status}`)
+  );
 }
 
 export { getItems, addItem, deleteItem, signup, signin, getCurrentUser };

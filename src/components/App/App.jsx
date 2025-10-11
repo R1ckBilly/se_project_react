@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
+import CurrentUserContext from "../../context/CurrentUserContext";
+
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -11,7 +13,6 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
-import CurrentUserContext from "../../context/CurrentUserContext";
 import { defaultClothingItems } from "../../utils/defaultClothingItems";
 import "./App.css";
 import { getWeatherData } from "../../utils/weatherApi";
@@ -59,7 +60,8 @@ function App() {
   function handleAddItemSubmit(inputValues) {
     addItem(inputValues, currentUser.token)
       .then((data) => {
-        setClothingItems([data, ...clothingItems]);
+        console.log(data);
+        setClothingItems([data.data, ...clothingItems]);
         handleCloseItemModal();
       })
       .catch(console.error);
@@ -79,24 +81,33 @@ function App() {
 
   function handleRegisterSubmit(formData) {
     signup(formData)
-      .then((user) => {
-        setCurrentUser(user);
-        setIsLoggedIn(true);
-        setActiveModal("");
-        localStorage.setItem("token", user.token);
+      .then((data) => {
+        return handleLoginSubmit(formData);
       })
       .catch(console.error);
   }
 
   function handleLoginSubmit(formData) {
     signin(formData)
-      .then((user) => {
-        setCurrentUser(user);
-        setIsLoggedIn(true);
-        setActiveModal("");
-        localStorage.setItem("token", user.token);
+      .then((data) => {
+        console.log(data);
+        localStorage.setItem("jwt", data.token);
+        getUserData();
       })
       .catch(console.error);
+  }
+
+  function getUserData() {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      getCurrentUser(token)
+        .then((user) => {
+          setCurrentUser(user);
+          setIsLoggedIn(true);
+          setActiveModal("");
+        })
+        .catch(() => localStorage.removeItem("jwt"));
+    }
   }
 
   useEffect(() => {
@@ -110,21 +121,13 @@ function App() {
   useEffect(() => {
     getItems()
       .then((items) => {
-        setClothingItems(items.data.reverse());
+        setClothingItems(items.reverse());
       })
       .catch(console.error);
   }, []);
 
   useEffect(() => {
-    const token = localStorage.getItem("jwt");
-    if (token) {
-      getCurrentUser(token)
-        .then((user) => {
-          setCurrentUser(user);
-          setIsLoggedIn(true);
-        })
-        .catch(() => localStorage.removeItem("jwt"));
-    }
+    getUserData();
   }, []);
 
   return (

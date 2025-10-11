@@ -1,5 +1,7 @@
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
+import CurrentUserContext from "../../context/CurrentUserContext";
+import { useContext } from "react";
 
 // TODO - make the item modal open on the profile route
 function ClothesSection({
@@ -7,6 +9,9 @@ function ClothesSection({
   handleOpenItemModal,
   handleOpenAddGarmentModal,
 }) {
+
+  const currentUser =  useContext(CurrentUserContext);
+
   return (
     <section className="clothes-section">
       <div className="clothes-section__row">
@@ -19,7 +24,7 @@ function ClothesSection({
         </button>
       </div>
       <ul className="clothes-section__card-list">
-        {clothingItems.map((item) => {
+        {clothingItems.filter((item)=> item.owner === currentUser?._id).map((item) => {
           return (
             <ItemCard
               key={item._id}

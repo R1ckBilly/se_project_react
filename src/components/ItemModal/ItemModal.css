@@ -30,9 +30,8 @@
 
 .modal__image {
   display: block;
-  width: 498px;   
-  height: 498px; 
-  object-fit: contain; 
+  width: 498px;
+  height: 498px;
   margin: 0 auto;
 }
 
