@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useForm } from "../../hooks/useForms";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
+import "./LoginModal.css";
+
 function LoginModal({ isOpen, isClosed, handleLoginSubmit }) {
   const { values, handleChange, setValues } = useForm({
     email: "",
