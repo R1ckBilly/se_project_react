@@ -12,3 +12,8 @@ Add new garments via a form modal with input fields and radio buttons.
 See a footer with developer credit.
 
 The application uses React functional components, state management with useState, and modular CSS for styling.
+
+
+# Backend repo link:
+
+https://github.com/R1ckBilly/se_project_express.git 
