@@ -69,7 +69,6 @@
   position: absolute;
   right: 20px;
   bottom: 80px;
-  margin: 25px 34px 0 0;
   padding: 0;
   transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
 }
