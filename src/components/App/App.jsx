@@ -127,15 +127,12 @@ function App() {
   }, []);
 
   useEffect(() => {
-  if (isLoggedIn) {
     getItems()
       .then((items) => {
         setClothingItems(items.reverse());
       })
       .catch(console.error);
-  } else {
-    setClothingItems([]); 
-  }
+
 }, [isLoggedIn]);
 
   useEffect(() => {
