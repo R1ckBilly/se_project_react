@@ -25,8 +25,8 @@ function LoginModal({ isOpen, isClosed, handleLoginSubmit }) {
     <ModalWithForm
       isOpen={isOpen}
       isClosed={isClosed}
-      title="Sign Up"
-      buttonText="Sign Up"
+      title="Log In"
+      buttonText="Log In"
       name="sign-up-form"
       handleSubmit={handleSubmit}
     >
