@@ -13,7 +13,7 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
-import { defaultClothingItems } from "../../utils/defaultClothingItems";
+// import { defaultClothingItems } from "../../utils/defaultClothingItems";
 import "./App.css";
 import { getWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
@@ -82,7 +82,7 @@ function App() {
   function handleRegisterSubmit(formData) {
     signup(formData)
       .then((data) => {
-        return handleLoginSubmit(formData);
+        return handleLoginSubmit({email: formData.email, password: formData.password});
       })
       .catch(console.error);
   }

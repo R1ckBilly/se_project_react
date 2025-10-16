@@ -1,5 +1,6 @@
-const baseUrl = "http://localhost:3001";
-// const baseUrl = "https://www.whattowearexpress.twilightparadox.com";
+const baseUrl = process.env.NODE_ENV === "production" 
+  ? "https://api.whattowearexpress.twilightparadox.com"
+  : "http://localhost:3001";
 
 function getItems() {
   const token = localStorage.getItem("jwt");
