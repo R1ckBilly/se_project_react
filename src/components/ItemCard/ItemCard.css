@@ -30,3 +30,21 @@
   object-fit: cover;
   border-radius: 16px;
 }
+
+.card__like-btn {
+  position: absolute;
+  width: 18;
+  height: 15;
+  top: 18px;
+  right: 80px;
+  opacity: 1;
+  background-color: transparent;
+  border: none;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.card__like-btn:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  color: #000000;
+}

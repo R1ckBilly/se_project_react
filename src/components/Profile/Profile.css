@@ -10,6 +10,26 @@
   align-items: flex-start;
 }
 
+.profile__edit-data {
+  background: transparent;
+  border: none;
+  margin-top: 20px;
+  padding: 0;
+  opacity: 1;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background-color 0.1s ease, transform 0.1s ease;
+}
+
+.profile__edit-data:hover {
+  opacity: 60%;
+  transform: scale(1.05);
+}
+
 .profile__signout-btn {
   background: transparent;
   border: none;

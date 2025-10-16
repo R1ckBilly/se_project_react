@@ -11,6 +11,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import Profile from "../Profile/Profile";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 // import { defaultClothingItems } from "../../utils/defaultClothingItems";
@@ -24,6 +25,9 @@ import {
   signup,
   signin,
   getCurrentUser,
+  likeBtn,
+  disLikeBtn,
+  editProfileBtn,
 } from "../../utils/api";
 
 function App() {
@@ -57,6 +61,10 @@ function App() {
     }
   }
 
+  function handleOpenEditProfileModal() {
+    setActiveModal("edit-profile");
+  }
+
   function handleAddItemSubmit(inputValues) {
     addItem(inputValues, currentUser.token)
       .then((data) => {
@@ -82,7 +90,10 @@ function App() {
   function handleRegisterSubmit(formData) {
     signup(formData)
       .then((data) => {
-        return handleLoginSubmit({email: formData.email, password: formData.password});
+        return handleLoginSubmit({
+          email: formData.email,
+          password: formData.password,
+        });
       })
       .catch(console.error);
   }
@@ -103,6 +114,41 @@ function App() {
     setCurrentUser(null);
     setActiveModal("");
     setClothingItems([]);
+  }
+
+  function handleLikeBtn(itemId, isLiked) {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      if (!isLiked) {
+        likeBtn(itemId, token)
+          .then((updateItem) => {
+            setClothingItems((prev) =>
+              prev.map((item) => (item._id === itemId ? updateItem : item))
+            );
+          })
+          .catch(() => localStorage.removeItem("jwt"));
+      } else {
+        disLikeBtn(itemId, token)
+          .then((updateItem) => {
+            setClothingItems((prev) =>
+              prev.map((item) => (item._id === itemId ? updateItem : item))
+            );
+          })
+          .catch(() => localStorage.removeItem("jwt"));
+      }
+    }
+  }
+
+  function handleEditProfileBtn(data) {
+    const token = localStorage.getItem("jwt");
+    if (token) {
+      editProfileBtn(data, token)
+        .then((updateData) => {
+          setCurrentUser(updateData);
+          handleCloseItemModal();
+        })
+        .catch(() => localStorage.removeItem("jwt"));
+    }
   }
 
   function getUserData() {
@@ -132,8 +178,7 @@ function App() {
         setClothingItems(items.reverse());
       })
       .catch(console.error);
-
-}, [isLoggedIn]);
+  }, [isLoggedIn]);
 
   useEffect(() => {
     getUserData();
@@ -162,6 +207,7 @@ function App() {
                     weatherData={weatherData}
                     clothingItems={clothingItems}
                     handleOpenItemModal={handleOpenItemModal}
+                    handleLikeBtn={handleLikeBtn}
                   />
                 }
               ></Route>
@@ -174,6 +220,9 @@ function App() {
                       handleOpenAddGarmentModal={handleOpenAddGarmentModal}
                       handleOpenItemModal={handleOpenItemModal}
                       handleSignOutSubmit={handleSignOutSubmit}
+                      handleEditProfileBtn={handleEditProfileBtn}
+                      handleOpenEditProfileModal={handleOpenEditProfileModal}
+                      handleLikeBtn={handleLikeBtn}
                     />
                   </ProtectedRoute>
                 }
@@ -202,6 +251,13 @@ function App() {
               isClosed={() => setActiveModal("")}
               handleLoginSubmit={handleLoginSubmit}
             />
+            {currentUser && (
+              <EditProfileModal
+                isOpen={activeModal === "edit-profile"}
+                isClosed={() => setActiveModal("")}
+                handleEditProfileSubmit={handleEditProfileBtn}
+              />
+            )}
           </div>
         </CurrentTemperatureUnitContext.Provider>
       </div>

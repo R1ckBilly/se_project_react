@@ -8,6 +8,7 @@ function ClothesSection({
   clothingItems,
   handleOpenItemModal,
   handleOpenAddGarmentModal,
+  handleLikeBtn,
 }) {
 
   const currentUser =  useContext(CurrentUserContext);
@@ -30,6 +31,7 @@ function ClothesSection({
               key={item._id}
               data={item}
               onCardClick={handleOpenItemModal}
+              handleLikeBtn={handleLikeBtn}
             />
           );
         })}

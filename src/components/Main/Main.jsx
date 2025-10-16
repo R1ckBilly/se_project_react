@@ -4,7 +4,7 @@ import WeatherCard from "../WeatherCard/WeatherCard";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
 import "./Main.css";
 
-function Main({ clothingItems = [], handleOpenItemModal, weatherData }) {
+function Main({ clothingItems = [], handleOpenItemModal, weatherData, handleLikeBtn }) {
   const { currentTempUnit } = useContext(CurrentTemperatureUnitContext);
 
   if (!weatherData || !weatherData.temp) return null;
@@ -41,6 +41,7 @@ function Main({ clothingItems = [], handleOpenItemModal, weatherData }) {
             key={item._id}
             data={item}
             onCardClick={handleOpenItemModal}
+            handleLikeBtn={handleLikeBtn}
           />
         ))}
       </ul>
