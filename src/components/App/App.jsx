@@ -151,6 +151,14 @@ function App() {
     }
   }
 
+  function handleSwitchToLogin() {
+  setActiveModal("login");
+}
+
+function handleSwitchToRegister() {
+  setActiveModal("register");
+}
+
   function getUserData() {
     const token = localStorage.getItem("jwt");
     if (token) {
@@ -245,11 +253,13 @@ function App() {
               isOpen={activeModal === "register"}
               isClosed={() => setActiveModal("")}
               handleRegisterSubmit={handleRegisterSubmit}
+              handleSwitchToLogin={handleSwitchToLogin}
             />
             <LoginModal
               isOpen={activeModal === "login"}
               isClosed={() => setActiveModal("")}
               handleLoginSubmit={handleLoginSubmit}
+              handleSwitchToRegister={handleSwitchToRegister}
             />
             {currentUser && (
               <EditProfileModal

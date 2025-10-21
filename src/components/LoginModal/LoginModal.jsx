@@ -4,7 +4,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 import "./LoginModal.css";
 
-function LoginModal({ isOpen, isClosed, handleLoginSubmit }) {
+function LoginModal({ isOpen, isClosed, handleLoginSubmit, handleSwitchToRegister }) {
   const { values, handleChange, setValues } = useForm({
     email: "",
     password: "",
@@ -57,6 +57,16 @@ function LoginModal({ isOpen, isClosed, handleLoginSubmit }) {
           onChange={handleChange}
         />
       </fieldset>
+
+      <div className="modal__switch">
+          <button
+            type="button"
+            className="modal__switch-btn"
+            onClick={handleSwitchToRegister}
+          >
+           or Sign Up
+          </button>
+      </div>
     </ModalWithForm>
   );
 }
